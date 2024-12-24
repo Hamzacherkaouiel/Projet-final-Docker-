@@ -1,0 +1,84 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - malki
+    depends_on:
+      - frontcontainer
+      - backendcontainermini
+  backendcontainermini:
+    image: killerquen69/backendimagemini:latest
+    ports:
+      - 7000:7000
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 20s
+      resources:
+        limits:
+          cpus: "1"
+          memory: "2G"
+      restart_policy:
+        condition: on-failure
+    networks:
+      - malki
+
+  dataprojet:
+    image: postgres:latest
+    volumes:
+      - dbpost2:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hamza
+      POSTGRES_DB: project
+    networks:
+      - malki
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 20s
+      resources:
+        limits:
+          cpus: "1"
+          memory: "1G"
+      restart_policy:
+        condition: on-failure
+
+
+
+
+
+  frontcontainer:
+    image: killerquen69/frontprod8:latest
+    ports:
+      - 5173:80
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 1
+        delay: 20s
+      resources:
+        limits:
+          cpus: "1"
+          memory: "1G"
+
+      restart_policy:
+        condition: on-failure
+    networks:
+      - malki
+
+volumes:
+  dbpost2:
+    driver: local
+networks:
+  malki:
+    external: true
+
+

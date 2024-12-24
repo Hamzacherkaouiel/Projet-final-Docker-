@@ -1,0 +1,109 @@
+/* Global styles */
+body {
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f9fc;
+    color: #333;
+  }
+  
+  /* Header styles */
+  
+  
+  
+  
+  
+  
+ 
+  
+  /* Hero section styles */
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #eaf7fd;
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    color: #007ac1;
+    margin-bottom: 20px;
+  }
+  
+  .hero h1 span {
+    color: #00a651;
+    font-style: italic;
+  }
+  
+  .hero p {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  
+  .hero .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .hero .buttons button{
+    padding: 15px 25px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #1784c4;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .hero .buttons button:hover {
+    background-color: #005f91;
+  }
+  
+  .hero .buttons button.secondary {
+    background-color: #00a651;
+  }
+  
+  .hero .buttons button.secondary:hover {
+    background-color: #008a42;
+  }
+  
+  /* Background elements */
+  .hero .background {
+    border-radius: 10px;
+    position: relative;
+    z-index: -1;
+  }
+  
+  /*.hero .background img {
+    position:relative;
+    width: 80px;
+  }*/
+  .display div{
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    
+  }
+   .etudiant {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #1b700e;
+    font-size: 16px;
+    font-weight: bold;
+    padding-right: 44px ;
+  }
+  .navv{
+    display: flex;
+    flex-direction: column;
+     padding: auto;
+     justify-content: space-between;
+  }
+  .b{
+    margin-bottom: 10px;
+  }
+  
+  
+  
+  

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backendep
+  namespace: exam
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-back
+
+  template:
+    metadata:
+      labels:
+        app: my-back
+    spec:
+      containers:
+        - name: back
+          image: killerquen69/backendkub
+          ports:
+            - containerPort: 7000
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: serviceback
+  namespace: exam
+spec:
+  selector:
+    app: my-back
+  ports:
+    - port: 7000
+      targetPort: 7000

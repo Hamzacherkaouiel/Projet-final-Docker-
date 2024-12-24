@@ -1,0 +1,10 @@
+version: 0.1
+log:
+  level: debug
+  fields:
+    service: registry
+http:
+  headers:
+    Access-Control-Allow-Origin: ['*']
+    Access-Control-Allow-Methods: ['HEAD', 'GET', 'OPTIONS', 'DELETE']
+    Access-Control-Allow-Headers: ['Authorization', 'Accept', 'Cache-Control', 'X-Requested-With']

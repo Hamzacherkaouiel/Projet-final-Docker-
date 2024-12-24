@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-backend
+  namespace: exam
+spec:
+  rules:
+    - host: back.com
+      http:
+        paths:
+          - path: /Students
+            pathType: Prefix
+            backend:
+              service:
+                name: serviceback
+                port:
+                  number: 7000

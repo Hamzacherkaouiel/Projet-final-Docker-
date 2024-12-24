@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: poststate
+  namespace: exam
+spec:
+
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-db
+  template:
+    metadata:
+      labels:
+        app: my-db
+    spec:
+      containers:
+        - name: contpg
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secretpg
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secretpg
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-conf
+                  key: database_name
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: pvcpg
+  volumeClaimTemplates:
+    - metadata:
+        name: pvcpg
+        namespace: exam
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: storage-demo
+        resources:
+          requests:
+            storage: 1Gi
+  serviceName:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicepg
+  namespace: exam
+spec:
+  selector:
+    app: my-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+  clusterIP: None
