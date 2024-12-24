@@ -48,7 +48,7 @@ spec:
         resources:
           requests:
             storage: 1Gi
-  serviceName:
+  serviceName: servicepg
 ---
 apiVersion: v1
 kind: Service
